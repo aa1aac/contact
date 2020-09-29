@@ -1,5 +1,9 @@
-import express from 'express'
+import express, { Express } from "express";
 
-const app = express()
+import { router as AuthRoute } from "./routes/AuthRoute";
 
-export {app}
+const app: Express = express();
+
+app.use("/api/auth", AuthRoute);
+
+export { app };
