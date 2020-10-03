@@ -5,6 +5,7 @@ export interface UserType extends Document {
   name: String;
   email: String;
   password: String;
+  comparePassword: Function;
 }
 
 const UserSchema: Schema = new mongoose.Schema({
@@ -26,5 +27,15 @@ UserSchema.pre<UserType>("save", async function (next) {
   }
 });
 
-// todo add check password
+UserSchema.methods.comparePassword = async function (password: string) {
+  try {
+    let result = await bcrypt.compare(password, this.password);
+
+    return result;
+  } catch (e) {
+    console.error(e);
+    return false;
+  }
+};
+
 export const User = mongoose.model<UserType>("user", UserSchema);

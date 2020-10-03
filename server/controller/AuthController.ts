@@ -2,8 +2,13 @@ import { Request, Response } from "express";
 
 import { User, UserType } from "../models/UserModel";
 
-
-export const getUser = (req: Request, res: Response): void => {};
+export const getUser = (req: Request, res: Response): void => {
+  if (req.user) {
+    res.status(200).json({ user: req.user });
+  } else {
+    res.status(403).json({ errors: ["please log in to get the data"] });
+  }
+};
 
 export const UserSignup = async (req: Request, res: Response) => {
   const { name, email, password } = req.body;
@@ -26,6 +31,11 @@ export const UserSignup = async (req: Request, res: Response) => {
   }
 };
 
-export const UserLogin = (req: Request, res: Response): void => {};
+export const UserLogin = (req: Request, res: Response) => {
+  res.status(200).json({ msg: "user successfully logged in" });
+};
 
-export const UserLogout = (req: Request, res: Response): void => {};
+export const UserLogout = async (req: Request, res: Response) => {
+  req.logout();
+  res.status(200).json({ msg: "user logged out" });
+};

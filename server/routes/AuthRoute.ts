@@ -1,17 +1,29 @@
 import express, { Router, Request, Response, NextFunction } from "express";
 import { check, validationResult } from "express-validator";
+import passport from "passport";
 
-import { UserSignup } from "../controller/AuthController";
+import {
+  UserSignup,
+  UserLogin,
+  UserLogout,
+  getUser,
+} from "../controller/AuthController";
 
 const router: Router = express.Router();
 
 // /api/auth/login
 // POST
-router.post("/login");
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    failureMessage: "Invalid email or password",
+  }),
+  UserLogin
+);
 
 // /api/auth/logout
 // GET
-router.get("/logout");
+router.get("/logout", UserLogout);
 
 // /api/auth/signup
 // POST
@@ -61,6 +73,6 @@ router.post(
 
 // /api/auth/get-user
 // GET
-router.get("/get-user");
+router.get("/get-user", getUser);
 
 export { router };
