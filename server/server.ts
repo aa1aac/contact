@@ -6,6 +6,7 @@ import MongoStore from "connect-mongo";
 
 import { passport } from "./services/passport";
 import { router as AuthRoute } from "./routes/AuthRoute";
+import { router as ContactsRoute } from "./routes/ContactRoute";
 
 dotenv.config();
 
@@ -31,6 +32,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/api/auth", AuthRoute);
+app.use("/api/contacts", ContactsRoute);
 
 if (process.env.MONGO_URI) {
   mongoose
