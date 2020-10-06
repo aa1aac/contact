@@ -4,7 +4,7 @@ export interface ContactType extends Document {
   name: string;
   email: string;
   phoneNumber: string;
-  _user: SchemaTypes.ObjectId
+  _user: string;
 }
 
 const ContactSchema: Schema = new Schema({

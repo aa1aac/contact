@@ -1,13 +1,13 @@
 import passport from "passport";
 import passportLocal from "passport-local";
 
-import { User } from "../models/UserModel";
+import { User, UserType } from "../models/UserModel";
 
-passport.serializeUser<any, any>((user, done) => {
+passport.serializeUser<UserType, any>((user, done) => {
   done(null, user._id);
 });
 
-passport.deserializeUser<any, any>(async (id, done) => {
+passport.deserializeUser<UserType, any>(async (id, done) => {
   try {
     let user = await User.findById(id, "name email");
 
