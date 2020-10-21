@@ -1,7 +1,7 @@
 import { Router } from "express";
 
 import { isAuth } from "../middlewares/isAuth";
-import { getContacts, addContacts } from "../controller/ContactsController";
+import { getContacts, addContacts, deleteContact, updateContact } from "../controller/ContactsController";
 
 const router = Router();
 
@@ -13,18 +13,17 @@ router.get("/", isAuth, getContacts);
 // /api/contacts/
 // POST
 // PRIVATE
-
 // todo add validation
 router.post("/", isAuth, addContacts);
 
 // /api/contacts/:contactId
 // DELETE
 // PRIVATE
-router.delete("/:contactId", isAuth);
+router.delete("/:contactId", isAuth, deleteContact);
 
 // /api/contacts/:contactId
 // PUT
 // PRIVATE
-router.put("/:contactId", isAuth);
+router.put("/:contactId", isAuth, updateContact);
 
 export { router };

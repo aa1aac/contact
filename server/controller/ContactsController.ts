@@ -51,3 +51,25 @@ export const addContacts = async (
     return res.status(500).json({ errors: ["some error occured"] });
   }
 };
+
+export const deleteContact = async (req: Request<{contactId: string}>,res: Response) => {
+  try{
+    await Contact.deleteOne({_id: req.params.contactId, _user: req.user?.id})
+
+    return res.status(200).json({msg:'contact deleted'})
+  } catch(e) {
+    console.error(e)
+  }
+}
+
+export const updateContact = async (req:Request<{contactId: string}>, res:Response) => {
+  try{
+    let contact = await Contact.findOneAndUpdate({_id: req.params.contactId, _user: req.user?._id}, {...req.body})
+    
+    return res.status(200).json({msg:'contact successfully updated'})
+  } 
+  catch(e) {
+    console.error(e)
+    return res.status(500).json({errors:['some error occured']})
+  }
+}
