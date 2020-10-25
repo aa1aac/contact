@@ -64,7 +64,7 @@ export const deleteContact = async (req: Request<{contactId: string}>,res: Respo
 
 export const updateContact = async (req:Request<{contactId: string}>, res:Response) => {
   try{
-    let contact = await Contact.findOneAndUpdate({_id: req.params.contactId, _user: req.user?._id}, {...req.body})
+    let contact : ContactType | null = await Contact.findOneAndUpdate({_id: req.params.contactId, _user: req.user?._id}, {...req.body})
     
     return res.status(200).json({msg:'contact successfully updated'})
   } 
