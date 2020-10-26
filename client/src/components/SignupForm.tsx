@@ -1,6 +1,6 @@
 import React from "react";
 
-export const LoginForm = (): JSX.Element => {
+export const SignupForm = (): JSX.Element => {
   return (
     <form
       className="card"
@@ -9,8 +9,12 @@ export const LoginForm = (): JSX.Element => {
       <div className="card-body">
         <h2>
           {" "}
-          Login <i className="fa fa-user"> </i>{" "}
+          Signup <i className="fa fa-user-plus"> </i>{" "}
         </h2>
+        <div className="form-group">
+          <label htmlFor="name">Name</label>
+          <input type="text" className="form-control" id="name" />
+        </div>
         <div className="form-group ">
           <label htmlFor="email">
             Email address <i className="fa fa-at"> </i>
@@ -29,14 +33,24 @@ export const LoginForm = (): JSX.Element => {
           <label htmlFor="password">Password</label>
           <input type="password" className="form-control" id="password" />
         </div>
+        <div className="form-group ">
+          <label htmlFor="confirmpassword">Confirm Password</label>
+          <input
+            type="password"
+            className="form-control"
+            id="confirmpassword"
+          />
+        </div>
         <button type="submit" className="btn btn-primary ">
-          Login <i className="fa fa-send"></i>{" "}
+          Signup
+          {/*  */}
+          <i className="fa fa-send"></i>{" "}
         </button>
         <br />
-        Don't have an account?{" "}
+        Already have an account?{" "}
         <button className="btn btn-secondary">
           {" "}
-          Signup <i className="fa fa-user-plus"></i>{" "}
+          login <i className="fa fa-user"></i>{" "}
         </button>
       </div>
     </form>
