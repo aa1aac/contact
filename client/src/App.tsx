@@ -12,11 +12,10 @@ function App() {
       <Navbar />
 
       <div className="container">
-        {/* <LoginForm /> */}
-        <SignupForm />
+        <LoginForm />
       </div>
     </div>
   );
 }
 
-export default App;
+export { App };
