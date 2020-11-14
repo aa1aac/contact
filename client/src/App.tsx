@@ -1,20 +1,23 @@
 import React from "react";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./styles/form.css";
 
 import { Navbar } from "./components/Navbar";
-import { LoginForm } from "./components/LoginForm";
-import { SignupForm } from "./components/SignupForm";
+
+import { IndexPage } from "./pages/IndexPage";
+import { SignupPage } from "./pages/SignupPage";
 
 function App() {
   return (
-    <div className="App">
+    <Router>
       <Navbar />
-
-      <div className="container">
-        <LoginForm />
-      </div>
-    </div>
+      <Switch>
+        <Route path="/" component={IndexPage} exact />
+        <Route path="/signup" component={SignupPage} exact />
+      </Switch>
+    </Router>
   );
 }
 

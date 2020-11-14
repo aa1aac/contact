@@ -1,10 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const SignupForm = (): JSX.Element => {
   return (
     <form
-      className="card"
-      style={{ width: "25rem", border: "none", margin: "0 auto" }}
+      className="card auth_form"
     >
       <div className="card-body">
         <h2>
@@ -48,10 +48,10 @@ export const SignupForm = (): JSX.Element => {
         </button>
         <br />
         Already have an account?{" "}
-        <button className="btn btn-secondary">
+        <Link to="/" className="btn btn-secondary">
           {" "}
           login <i className="fa fa-user"></i>{" "}
-        </button>
+        </Link>
       </div>
     </form>
   );

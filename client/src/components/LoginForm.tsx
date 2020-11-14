@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { Link } from "react-router-dom";
+
 export const LoginForm = (): JSX.Element => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -9,11 +11,7 @@ export const LoginForm = (): JSX.Element => {
   };
 
   return (
-    <form
-      className="card"
-      style={{ width: "25rem", border: "none", margin: "0 auto" }}
-      onSubmit={onLogin}
-    >
+    <form className="card auth_form" onSubmit={onLogin}>
       <div className="card-body">
         <h2>
           {" "}
@@ -50,10 +48,10 @@ export const LoginForm = (): JSX.Element => {
         </button>
         <br />
         Don't have an account ?{" "}
-        <button className="btn btn-secondary">
+        <Link to="/signup" className="btn btn-secondary">
           {" "}
           Signup <i className="fa fa-user-plus"></i>{" "}
-        </button>
+        </Link>
       </div>
     </form>
   );
