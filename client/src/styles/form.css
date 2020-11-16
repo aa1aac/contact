@@ -1,12 +1,11 @@
 .auth_form {
-    width: 25rem;
-    border: none;
-    margin: 0 auto
+  width: 25rem;
+  border: none;
+  margin: 0 auto;
 }
 
-@media (max-width:748px){
-
-    .auth_form{
-        width: 20rem;
-    }
+@media (max-width: 600px) {
+  .auth_form {
+    width: 95%;
+  }
 }

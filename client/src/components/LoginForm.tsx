@@ -1,13 +1,20 @@
-import React, { useState } from "react";
-
+import React, { useState, FormEvent, PropsWithChildren } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-export const LoginForm = (): JSX.Element => {
+import { loginUser } from "../store/actions";
+
+const _LoginForm = (
+  props: PropsWithChildren<{
+    loginUser: (args: { email: string; password: string }) => {};
+  }>
+): JSX.Element => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const onLogin = (e: React.FormEvent<HTMLFormElement>) => {
+  const onLogin = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    props.loginUser({ email, password });
   };
 
   return (
@@ -56,3 +63,5 @@ export const LoginForm = (): JSX.Element => {
     </form>
   );
 };
+
+export const LoginForm = connect(null, { loginUser })(_LoginForm);
