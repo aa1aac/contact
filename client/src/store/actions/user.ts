@@ -43,11 +43,12 @@ export const loginUser = ({ email, password }: { email: string; password: string
             let res = await axios.get('/api/auth/get-user')
 
             dispatch({type: ActionTypes.loginUser, payload: res.data.user})
-            
+            toast.success('user logged in')
         }
         catch (e) {
-            console.error(e)
-            toast.error(e.response.data.errors[0])
+            if(e.response?.data === 'Unauthorized' && e.response?.status === 401){
+                toast.error('invalid email or password')
+            }
         }
     }
 
@@ -61,7 +62,7 @@ export const signupUser = ({ name, email, password, confirmPassword }: { name: s
             
             toast.success('sucessfully signed up! You can now log in.')
         } catch (e) {
-           
+        
             toast.error(e.response.data.errors[0])
         }
     }
@@ -72,7 +73,7 @@ export const logoutUser = () => {
     return async (dispatch: Dispatch) => {
         try {
             let res = await axios.get('/api/auth/logout')
-            console.log(res.data)
+            dispatch({type:ActionTypes.logoutUser})
             toast.success(res.data.msg)
         } catch (e) {
             toast.error('some error occured logging out')

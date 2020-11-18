@@ -9,6 +9,8 @@ export const userReducers = (state : User = initialState, action: Action) => {
                 ...state,
                 ...action.payload
             }
+        case ActionTypes.logoutUser:
+            return initialState
         default:
             return state;
     }

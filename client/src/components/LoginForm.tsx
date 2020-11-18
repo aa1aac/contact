@@ -35,6 +35,7 @@ const _LoginForm = (
             aria-describedby="emailHelp"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
           <small id="emailHelp" className="form-text text-muted">
             We'll never share your email with anyone else.
@@ -48,6 +49,7 @@ const _LoginForm = (
             type="password"
             className="form-control"
             id="password"
+            required
           />
         </div>
         <button type="submit" className="btn btn-primary ">
