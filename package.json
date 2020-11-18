@@ -6,7 +6,8 @@
   "scripts": {
     "dev:server": "nodemon ./build/index.js --ignore ./client",
     "dev:ts": "tsc -w",
-    "dev": "concurrently npm:dev:*"
+    "dev": "concurrently npm:dev:*",
+    "start":"node ./build/index.js"
   },
   "keywords": [],
   "author": "",

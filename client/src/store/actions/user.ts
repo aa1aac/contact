@@ -21,6 +21,7 @@ export interface LoginUser {
 export interface User {
     _id: string;
     name: string;
+    email: string;
 }
 
 export const fetchUser = () => {
@@ -38,8 +39,11 @@ export const loginUser = ({ email, password }: { email: string; password: string
 
     return async (dispatch: Dispatch) => {
         try {
-            let res = await axios.post('/api/auth/login', { email, password })
-            toast.success(res.data.msg)
+            await axios.post('/api/auth/login', { email, password })
+            let res = await axios.get('/api/auth/get-user')
+
+            dispatch({type: ActionTypes.loginUser, payload: res.data.user})
+            
         }
         catch (e) {
             console.error(e)
@@ -53,12 +57,11 @@ export const signupUser = ({ name, email, password, confirmPassword }: { name: s
 
     return async (dispatch: Dispatch) => {
         try {
-            let res = await axios.post('/api/auth/signup', { name, email, password, confirmPassword })
+            await axios.post('/api/auth/signup', { name, email, password, confirmPassword })
             
             toast.success('sucessfully signed up! You can now log in.')
         } catch (e) {
-            
-            console.log(e.response.data)
+           
             toast.error(e.response.data.errors[0])
         }
     }
