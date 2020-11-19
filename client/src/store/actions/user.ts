@@ -28,7 +28,7 @@ export const fetchUser = () => {
     return async (dispatch: Dispatch) => {
         try {
             let res = await axios.get('/api/auth/get-user')
-            console.log(res.data)
+            dispatch({type: ActionTypes.fetchUser, payload: res.data.user})
         } catch (e) {
             console.error(e)
         } 
