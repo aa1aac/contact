@@ -4,10 +4,16 @@ import { connect } from "react-redux";
 import { StoreState } from "../store/reducers";
 import { User } from "../store/actions";
 import { LoginForm } from "../components/LoginForm";
+import { Add } from "../components/Add";
 
 export const _IndexPage = (props: PropsWithChildren<{ user: User }>) => {
   if (props.user._id) {
-    return <h2>You're logged in</h2>;
+    return (
+      <div className="container mt-3">
+        {" "}
+        <Add />{" "}
+      </div>
+    );
   } else {
     return <LoginForm />;
   }
