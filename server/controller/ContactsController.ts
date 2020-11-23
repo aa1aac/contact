@@ -45,7 +45,7 @@ export const addContacts = async (
 
     return res
       .status(201)
-      .json({ msg: "contact successfully created", id: newContact._id });
+      .json({ msg: "contact successfully created", _id: newContact._id });
   } catch (e) {
     console.error(e);
     return res.status(500).json({ errors: ["some error occured"] });
