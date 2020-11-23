@@ -28,7 +28,7 @@ export const getContacts = async (req: Request, res: Response) => {
 };
 
 export const addContacts = async (
-  req: Request<{}, { name: string; email?: string; phoneNumber: string }>,
+  req: Request<{}, any, { name: string; email?: string; phoneNumber: string }>,
   res: Response
 ) => {
   const { name, email, phoneNumber } = req.body;

@@ -1,14 +1,35 @@
-import React, { useState } from "react";
+import React, { PropsWithChildren, useState, FormEvent } from "react";
+import { connect } from "react-redux";
 
-export const Add = () => {
+import { addContact, Contact } from "../store/actions";
+
+interface PropTypes {
+  addContact: (data: Contact) => {};
+}
+
+const _Add = (props: PropsWithChildren<PropTypes>) => {
   const [add, setAdd] = useState(false);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
 
   const toggleAddForm = () => {
     setAdd(!add);
+  };
+
+  const onAdd = async (e: FormEvent) => {
+    e.preventDefault();
+    if (name && phoneNumber) {
+      let status = await props.addContact({ name, email, phoneNumber });
+
+      if (status) {
+        setAdd(false);
+        setName("");
+        setEmail("");
+        setPhoneNumber("");
+      }
+    }
   };
 
   return (
@@ -23,7 +44,7 @@ export const Add = () => {
 
       {add && (
         <div className="mt-1">
-          <form>
+          <form onSubmit={onAdd}>
             <div className="form-group">
               <label htmlFor="name">Name</label>
               <input
@@ -52,8 +73,8 @@ export const Add = () => {
                 type="text"
                 className="form-control"
                 id="phoneNumber"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
               />
             </div>
 
@@ -74,3 +95,5 @@ export const Add = () => {
     </>
   );
 };
+
+export const Add = connect(null, { addContact })(_Add);
