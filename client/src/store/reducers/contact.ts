@@ -11,6 +11,12 @@ export const ContactReducer = (state : ContactState = initialState, action : Act
                 ...state,
                 contacts : [...state.contacts, action.payload ]             
             }
+        case ActionTypes.fetchContacts:
+           
+            return {
+                ...state,
+                contacts: [...action.payload]
+            }
         default:
             return state
     }

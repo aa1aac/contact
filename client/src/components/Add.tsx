@@ -35,7 +35,7 @@ const _Add = (props: PropsWithChildren<PropTypes>) => {
   return (
     <>
       <button
-        className=" btn btn-block btn-outline-primary"
+        className=" btn btn-block btn-outline-primary d-block"
         onClick={toggleAddForm}
       >
         {" "}

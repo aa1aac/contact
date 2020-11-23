@@ -5,6 +5,7 @@ import {toast} from 'react-toastify'
 import { ActionTypes } from './types';
 
 export interface Contact {
+    _id?: string;
     name:string; 
     email?: string; 
     phoneNumber: string;
@@ -19,13 +20,30 @@ export interface AddContact {
     payload: Contact
 }
 
+export interface FetchContact {
+    type: ActionTypes.fetchContacts;
+    payload: Contact[]
+}
+
+export const fetchContacts = () => {
+    return async (dispatch:Dispatch) => {
+        try{
+            let res = await axios.get('/api/contacts')
+
+            dispatch({type: ActionTypes.fetchContacts, payload: res.data.contacts})
+        } catch(e) {
+            console.error(e)
+        }
+    }
+}
+
 export const addContact = (data: Contact) => {
     return async (dispatch: Dispatch) => {
 
         try {
-            await axios.post('/api/contacts', data)
+            let res = await axios.post('/api/contacts', data)
 
-            dispatch({type:ActionTypes.AddContact, payload: data})
+            dispatch({type:ActionTypes.AddContact, payload: {...data, _id: res.data._id}})
 
             toast.success('contact successfully added')
 
