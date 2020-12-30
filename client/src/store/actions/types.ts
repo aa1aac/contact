@@ -1,5 +1,5 @@
 import {FetchUser, LogoutUser, LoginUser} from './user'
-import {AddContact, FetchContact} from './contact'
+import {AddContact, FetchContact, DeleteContact } from './contact'
 
 export enum ActionTypes {
     fetchUser,
@@ -7,7 +7,8 @@ export enum ActionTypes {
     signupUser,
     loginUser,
     AddContact,
-    fetchContacts
+    fetchContacts,
+    deleteContact
 }
 
-export type Action = FetchUser | LogoutUser | LoginUser | AddContact | FetchContact
+export type Action = FetchUser | LogoutUser | LoginUser | AddContact | FetchContact | DeleteContact

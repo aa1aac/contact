@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev:server": "nodemon ./build/index.js --ignore ./client",
+    "dev:server": "nodemon ./build/server/index.js --ignore ./client",
     "dev:ts": "tsc -w",
     "dev": "concurrently npm:dev:*",
-    "start":"node ./build/index.js"
+    "start": "node ./build/index.js"
   },
   "keywords": [],
   "author": "",

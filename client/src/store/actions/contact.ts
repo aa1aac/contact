@@ -25,6 +25,13 @@ export interface FetchContact {
     payload: Contact[]
 }
 
+export interface DeleteContact {
+    type: ActionTypes.deleteContact;
+    payload: {
+        id : string;
+    };
+}
+
 export const fetchContacts = () => {
     return async (dispatch:Dispatch) => {
         try{
@@ -55,4 +62,17 @@ export const addContact = (data: Contact) => {
         }
     
     };
+}
+
+export const deleteContact = (id: string) => {
+    return async (dispatch: Dispatch) => {
+        try {
+            await axios.delete(`/api/contacts/${id}`)
+            
+            dispatch({payload: {id} ,type: ActionTypes.deleteContact })
+        } catch (e) {
+            console.error(e)
+            toast.error('unable to delete contact. Try again!')
+        }
+    }
 }

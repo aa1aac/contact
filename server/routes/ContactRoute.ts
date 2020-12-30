@@ -40,7 +40,7 @@ router.post("/", isAuth,
 addContacts);
 
 // /api/contacts/:contactId
-// DELETE
+// DELETE 
 // PRIVATE
 router.delete("/:contactId", isAuth, deleteContact);
 

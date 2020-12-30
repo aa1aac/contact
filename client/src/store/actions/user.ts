@@ -24,6 +24,8 @@ export interface User {
     email: string;
 }
 
+
+
 export const fetchUser = () => {
     return async (dispatch: Dispatch) => {
         try {

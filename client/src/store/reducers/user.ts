@@ -11,7 +11,8 @@ export const userReducers = (state : User = initialState, action: Action) => {
                 ...action.payload
             }  
         case ActionTypes.logoutUser:
-            return initialState  
+            return initialState 
+         
         default:
             return state
     }
